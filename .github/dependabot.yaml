@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # Python dependencies
+  - package-ecosystem: "pip"
+    directory: "api"
+    schedule:
+      interval: "weekly" # can be "daily", "weekly", "monthly"
+    commit-message:
+      prefix: "deps"
+    # ignore:
+    #   - dependency-name: "django" # optional, ignore certain packages
+    #     versions: ["<4.0"] # ignore versions lower than 4.0
