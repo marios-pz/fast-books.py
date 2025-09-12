@@ -1,1 +1,3 @@
-fastapi
+fastapi[standard]
+pyjwt[crypto]
+sqlalchemy==2.0.43
