@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from .books import router as books_router
 from .users import router as users_router
+from .genres import router as genres_router
+from .authors import router as authors_router
 from fastapi.middleware.cors import CORSMiddleware
 
 from dotenv import load_dotenv
@@ -10,7 +12,8 @@ load_dotenv()
 app = FastAPI()
 app.include_router(books_router)
 app.include_router(users_router)
-
+app.include_router(genres_router)
+app.include_router(authors_router)
 
 app.add_middleware(
     CORSMiddleware,
