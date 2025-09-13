@@ -18,6 +18,21 @@ def verify_password(password_a: str, password_b: str) -> bool:
 router = APIRouter()
 
 
+@router.post("/login")
+def login(response: Response, user: LoginRequest, db: Session = Depends(get_db)):
+    existing = search_user(db, user.email)
+    if not existing:
+        raise HTTPException(status_code=400, detail="user doesn't exist")
+
+    token = generate_jwt(
+        {"sub": str(existing.id), "username": existing.name, "email": existing.email}
+    )
+
+    response.set_cookie("fastbooks_token", token, httponly=True, samesite="lax")
+
+    return {"message": f"Welcome back {existing.name}!"}
+
+
 @router.post("/register")
 def register(response: Response, user: LoginRequest, db: Session = Depends(get_db)):
     existing = search_user(db, user.email)
