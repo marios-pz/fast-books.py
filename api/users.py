@@ -31,7 +31,7 @@ def register(response: Response, user: LoginRequest, db: Session = Depends(get_d
         name=user.username,
         password=user.password,  # TODO: hash this before saving
         email=user.email,
-        profile_picture_url="https://static.wikia.nocookie.net/idkcatmemes/images/a/af/Evillarry.png/revision/latest?cb=20241123231920",
+        profile_url="https://static.wikia.nocookie.net/idkcatmemes/images/a/af/Evillarry.png/revision/latest?cb=20241123231920",
         bio="About me",
         created_at=date,
     )
